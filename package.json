@@ -2,6 +2,9 @@
   "name": "electron-photobombth",
   "version": "1.0.0",
   "main": "src/main.js",
+  "scripts": {
+    "start": "electron ."
+  },
   "repository": "git@github.com:compumike08/electron-photobombth.git",
   "license": "UNLICENSED",
   "devDependencies": {
