@@ -3,5 +3,8 @@
   "version": "1.0.0",
   "main": "src/main.js",
   "repository": "git@github.com:compumike08/electron-photobombth.git",
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "electron": "^1.7.5"
+  }
 }
