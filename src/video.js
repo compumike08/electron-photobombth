@@ -10,8 +10,8 @@ const constraints = {
     }
 };
 
-function handleSuccess(videoEL, stream) {
-    video.srcObject = stream;
+function handleSuccess(videoEl, stream) {
+    videoEl.srcObject = stream;
 }
 
 function handleError(error) {
@@ -19,9 +19,14 @@ function handleError(error) {
 }
 
 exports.init = (nav, videoEl) => {
-    nav.mediaDevices.getUserMedia(constraints).then(stream => {
+     nav.mediaDevices.getUserMedia(constraints).then(stream => {
         handleSuccess(videoEl, stream);
     }).catch(err => {
         handleError(err);
     });
 };
+
+exports.captureBytes = (videoEl, ctx, canvasEl) => {
+    ctx.drawImage(videoEl, 0, 0);
+    return canvasEl.toDataURL('image/png');
+}
