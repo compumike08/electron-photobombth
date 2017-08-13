@@ -1,5 +1,6 @@
 const electron = require('electron');
 
+const images = require('./images');
 const {AppEventConstants} = require('./appEventConstants');
 const {EffectTypesConstants} = require('./effectTypesConstants');
 const {ValueConstants} = require('./valueConstants');
@@ -78,6 +79,17 @@ module.exports = mainWindow => {
                             AppEventConstants.EFFECT_CHOOSE,
                             EffectTypesConstants.HEX
                         );
+                    }
+                }
+            ]
+        },
+        {
+            label: 'View',
+            submenu: [
+                {
+                    label: 'Photos Directory',
+                    click: _ => {
+                        images.openDir(images.getPicturesDir(app));
                     }
                 }
             ]

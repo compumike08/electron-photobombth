@@ -1,9 +1,17 @@
 const fs = require('fs');
 const path = require('path');
+const shell = require('electron').shell;
+const spawn = require('child_process').spawn;
 
 const {ValueConstants} = require('./valueConstants');
 
 const logError = err => err && console.error(err);
+
+const openCmds = {
+    darwin: 'open',
+    win32: 'explorer',
+    linux: 'nautilus'
+}
 
 let images = [];
 
@@ -22,6 +30,16 @@ exports.save = (picturesPath, contents, done) => {
 exports.getPicturesDir = app => {
     return path.join(app.getPath(ValueConstants.IMAGES_PARENT_DIR), ValueConstants.IMAGES_DIR);
 };
+
+exports.openDir = dirPath => {
+    const cmd = openCmds[process.platform];
+
+    if (cmd) {
+        spawn(cmd, [dirPath]);
+    } else {
+        shell.showItemInFolder(dirPath);
+    }
+}
 
 exports.mkdir = picturesPath => {
     fs.stat(picturesPath, (err, stats) => {
