@@ -1,10 +1,11 @@
 const electron = require('electron');
 
 const {app, BrowserWindow} = electron;
+const {AppEventConstants} = require('./eventConstants');
 
 let mainWindow = null;
 
-app.on('ready', _ => {
+app.on(AppEventConstants.READY, _ => {
     mainWindow = new BrowserWindow({
         width: 1200,
         height: 725,
@@ -16,7 +17,7 @@ app.on('ready', _ => {
     // Automatically open dev tools for easier debugging
     mainWindow.webContents.openDevTools();
 
-    mainWindow.on('closed', _ => {
+    mainWindow.on(AppEventConstants.CLOSED, _ => {
         // Null out mainWindow variable when window is closed for proper garbage collection
         mainWindow = null;
     });

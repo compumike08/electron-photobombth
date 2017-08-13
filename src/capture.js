@@ -1,3 +1,4 @@
+const {AppEventConstants} = require('./eventConstants');
 const video = require('./video');
 const countdown = require('./countdown');
 
@@ -16,7 +17,7 @@ function formatImgTag(doc, bytes) {
     return div;
 }
 
-window.addEventListener('DOMContentLoaded', _ => {
+window.addEventListener(AppEventConstants.DOM_CONTENT_LOADED, _ => {
     const videoEl = document.getElementById('video');
     const canvasEl = document.getElementById('canvas');
     const recordEl = document.getElementById('record');
@@ -27,7 +28,7 @@ window.addEventListener('DOMContentLoaded', _ => {
 
     video.init(navigator, videoEl);
 
-    recordEl.addEventListener('click', _ => {
+    recordEl.addEventListener(AppEventConstants.CLICK, _ => {
         countdown.start(counterEl, COUNTDOWN_FROM, _ => {
             const bytes = video.captureBytes(videoEl, ctx, canvasEl);
             photosEl.appendChild(formatImgTag(document, bytes));
