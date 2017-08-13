@@ -1,5 +1,11 @@
 const {EffectTypesConstants} = require('./effectTypesConstants');
 
+function connectEffect(seriously, src, target, effect) {
+    effect.source = src;
+    target.source = effect;
+    seriously.go();
+}
+
 const effects = {
     vanilla: (seriously, src, target) => {
         target.source = src;
@@ -7,9 +13,7 @@ const effects = {
     },
     ascii: (seriously, src, target) => {
         const ascii = seriously.effect(EffectTypesConstants.ASCII);
-        ascii.source = src;
-        target.source = ascii;
-        seriously.go();
+        connectEffect(seriously, src, target, ascii);
     }
 };
 
