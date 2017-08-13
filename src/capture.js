@@ -10,8 +10,6 @@ const flash = require('./flash');
 
 const images = remote.require('./images');
 
-const COUNTDOWN_FROM = 3;
-
 function formatImgTag(doc, bytes) {
     const div = doc.createElement('div');
     div.classList.add(ValueConstants.CLASSES.PHOTO.CLASS_NAME);
@@ -58,7 +56,7 @@ window.addEventListener(AppEventConstants.DOM_CONTENT_LOADED, _ => {
     recordEl.addEventListener(AppEventConstants.CLICK, _ => {
         disableRecordBtn(document);
 
-        countdown.start(counterEl, COUNTDOWN_FROM, _ => {
+        countdown.start(counterEl, ValueConstants.COUNTDOWN_FROM, _ => {
             flash(flashEl);
             const bytes = video.captureBytes(videoEl, ctx, canvasEl);
             ipc.send(AppEventConstants.IMAGE_CAPTURED, bytes);
