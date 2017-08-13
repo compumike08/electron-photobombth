@@ -15,38 +15,21 @@ function enabledCycleEffect(items) {
 
 module.exports = mainWindow => {
     const appName = app.getName();
+
+    const appNameSubmenuTemplate = [
+        {
+            label: 'Quit',
+            accelerator: 'Ctrl+Q',
+            click: _ => {
+                app.quit();
+            }
+        }
+    ];
+
     const template = [
         {
             label: appName,
-            submenu: [
-                {
-                    label: 'About ' + appName,
-                    role: 'about'
-                },
-                { type: 'separator' },
-                {
-                    label: 'Hide ' + appName,
-                    accelerator: 'Command+H',
-                    role: 'hide'
-                },
-                {
-                    label: 'Hide Others',
-                    accelerator: 'Command+Shift+H',
-                    role: 'hideothers'
-                },
-                {
-                    label: 'Show All',
-                    role: 'unhide'
-                },
-                { type: 'separator' },
-                {
-                    label: 'Quit',
-                    accelerator: 'Ctrl+Q',
-                    click: _ => {
-                        app.quit();
-                    }
-                }
-            ]
+            submenu: appNameSubmenuTemplate
         },
         {
             label: 'Effects',
@@ -115,6 +98,32 @@ module.exports = mainWindow => {
             ]
         }
     ];
+
+    // Prepend macOS specific menu options to menu only when running on macOS
+    if (process.platform === 'darwin') {
+        appNameSubmenuTemplate.unshift(
+            {
+                label: 'About ' + appName,
+                role: 'about'
+            },
+            { type: 'separator' },
+            {
+                label: 'Hide ' + appName,
+                accelerator: 'Command+H',
+                role: 'hide'
+            },
+            {
+                label: 'Hide Others',
+                accelerator: 'Command+Shift+H',
+                role: 'hideothers'
+            },
+            {
+                label: 'Show All',
+                role: 'unhide'
+            },
+            { type: 'separator' },
+        );
+    }
 
     return template;
 };
