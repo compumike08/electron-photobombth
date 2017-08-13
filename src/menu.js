@@ -3,6 +3,7 @@ const electron = require('electron');
 const {AppEventConstants} = require('./appEventConstants');
 const {EffectTypesConstants} = require('./effectTypesConstants');
 const {ValueConstants} = require('./valueConstants');
+
 const {app} = electron;
 
 function enabledCycleEffect(items) {

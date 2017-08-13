@@ -1,7 +1,5 @@
 const electron = require('electron');
 
-const {ipcRenderer: ipc, shell, remote} = electron;
-
 const {AppEventConstants} = require('./appEventConstants');
 const {ValueConstants} = require('./valueConstants');
 const {EffectTypesConstants} = require('./effectTypesConstants');
@@ -9,6 +7,8 @@ const video = require('./video');
 const countdown = require('./countdown');
 const flash = require('./flash');
 const effects = require('./effects');
+
+const {ipcRenderer: ipc, shell, remote} = electron;
 
 const images = remote.require('./images');
 
