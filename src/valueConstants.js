@@ -19,7 +19,14 @@ const ValueConstants = {
             CLASS_NAME: 'photosContainer',
             DOT_CLASS_NAME: '.photosContainer'
         }
-    }
+    },
+    IDS: {
+        VIDEO: 'video',
+        CANVAS: 'canvas',
+        RECORD: 'record',
+        COUNTER: 'counter'
+    },
+    CANVAS_CONTEXT: '2d'
 };
 
 exports.ValueConstants = ValueConstants;

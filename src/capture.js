@@ -25,13 +25,13 @@ function formatImgTag(doc, bytes) {
 }
 
 window.addEventListener(AppEventConstants.DOM_CONTENT_LOADED, _ => {
-    const videoEl = document.getElementById('video');
-    const canvasEl = document.getElementById('canvas');
-    const recordEl = document.getElementById('record');
+    const videoEl = document.getElementById(ValueConstants.IDS.VIDEO);
+    const canvasEl = document.getElementById(ValueConstants.IDS.CANVAS);
+    const recordEl = document.getElementById(ValueConstants.IDS.RECORD);
     const photosEl = document.querySelector(ValueConstants.CLASSES.PHOTOS_CONTAINER.DOT_CLASS_NAME);
-    const counterEl = document.getElementById('counter');
+    const counterEl = document.getElementById(ValueConstants.IDS.COUNTER);
 
-    const ctx = canvasEl.getContext('2d');
+    const ctx = canvasEl.getContext(ValueConstants.CANVAS_CONTEXT);
 
     video.init(navigator, videoEl);
 
