@@ -6,7 +6,8 @@
   "scripts": {
     "start": "electron .",
     "rm-build-dir": "rimraf build",
-    "build": "npm run rm-build-dir && electron-packager . --package-manager=yarn --out=build --platform=darwin,win32,linux --arch=x64 --icon=app"
+    "build": "npm run rm-build-dir && electron-packager . --package-manager=yarn --out=build --platform=darwin,win32,linux --arch=x64 --icon=app --app-version=$npm_package_version",
+    "build:onWin": "npm run rm-build-dir && electron-packager . --package-manager=yarn --out=build --platform=darwin,win32,linux --arch=x64 --icon=app --app-version=%npm_package_version%"
   },
   "repository": "git@github.com:compumike08/electron-photobombth.git",
   "license": "UNLICENSED",
