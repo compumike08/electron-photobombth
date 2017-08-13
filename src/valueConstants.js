@@ -52,7 +52,8 @@ const ValueConstants = {
         }
     },
     CANVAS_CONTEXT: '2d',
-    FLASH_DURATION: 2000
+    FLASH_DURATION: 2000,
+    NON_EFFECT_MENU_OFFSET: 2
 };
 
 exports.ValueConstants = ValueConstants;

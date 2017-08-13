@@ -99,3 +99,7 @@ ipc.on(AppEventConstants.IMAGE_REMOVED, (evt, index) => {
 ipc.on(AppEventConstants.EFFECT_CHOOSE, (evt, effectName) => {
     effects.choose(seriously, videoSrc, canvasTarget, effectName);
 });
+
+ipc.on(AppEventConstants.EFFECT_CYCLE, evt => {
+    effects.cycle(seriously, videoSrc, canvasTarget);
+});

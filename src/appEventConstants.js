@@ -6,7 +6,8 @@ const AppEventConstants = {
     IMAGE_CAPTURED: 'image-captured',
     IMAGE_REMOVE: 'image-remove',
     IMAGE_REMOVED: 'image-removed',
-    EFFECT_CHOOSE: 'effect-choose'
+    EFFECT_CHOOSE: 'effect-choose',
+    EFFECT_CYCLE: 'effect-cycle'
 };
 
 exports.AppEventConstants = AppEventConstants;
