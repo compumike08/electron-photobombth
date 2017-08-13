@@ -10,15 +10,12 @@ let mainWindow = null;
 
 app.on(AppEventConstants.READY, _ => {
     mainWindow = new BrowserWindow({
-        width: 1200,
+        width: 893,
         height: 725,
         resizable: false
     });
 
     mainWindow.loadURL(`file://${__dirname}/capture.html`);
-
-    // Automatically open dev tools for easier debugging
-    mainWindow.webContents.openDevTools();
 
     images.mkdir(images.getPicturesDir(app));
 
