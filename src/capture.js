@@ -58,7 +58,7 @@ window.addEventListener(AppEventConstants.DOM_CONTENT_LOADED, _ => {
     seriously = new Seriously();
     videoSrc = seriously.source(ValueConstants.IDS.VIDEO.HASH_ID);
     canvasTarget = seriously.target(ValueConstants.IDS.CANVAS.HASH_ID);
-    effects.choose(seriously, videoSrc, canvasTarget, EffectTypesConstants.ASCII);
+    effects.choose(seriously, videoSrc, canvasTarget);
 
     video.init(navigator, videoEl);
 
@@ -94,4 +94,8 @@ window.addEventListener(AppEventConstants.DOM_CONTENT_LOADED, _ => {
 ipc.on(AppEventConstants.IMAGE_REMOVED, (evt, index) => {
     const photosArray = Array.from(document.querySelectorAll(ValueConstants.CLASSES.PHOTO.DOT_CLASS_NAME));
     document.getElementById(ValueConstants.IDS.PHOTOS.ID).removeChild(photosArray[index]);
+});
+
+ipc.on(AppEventConstants.EFFECT_CHOOSE, (evt, effectName) => {
+    effects.choose(seriously, videoSrc, canvasTarget, effectName);
 });
