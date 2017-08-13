@@ -44,9 +44,23 @@ window.addEventListener(AppEventConstants.DOM_CONTENT_LOADED, _ => {
     });
 
     photosEl.addEventListener(AppEventConstants.CLICK, evt => {
-        const photos = Array.from(document.querySelectorAll(ValueConstants.CLASSES.PHOTO_IMG.DOT_CLASS_NAME));
+        const isRm = evt.target.classList.contains(ValueConstants.CLASSES.PHOTO_CLOSE.CLASS_NAME);
+        const selector = isRm ? ValueConstants.CLASSES.PHOTO_CLOSE.DOT_CLASS_NAME : ValueConstants.CLASSES.PHOTO_IMG.DOT_CLASS_NAME;
+
+        const photos = Array.from(document.querySelectorAll(selector));
         const index = photos.findIndex(el => el == evt.target);
 
-        shell.showItemInFolder(images.getFromCache(index));
+        if (index >= 0) {
+            if (isRm) {
+                ipc.send(AppEventConstants.IMAGE_REMOVE, index);
+            } else {
+                shell.showItemInFolder(images.getFromCache(index));
+            }
+        }
     });
+});
+
+ipc.on(AppEventConstants.IMAGE_REMOVED, (evt, index) => {
+    const photosArray = Array.from(document.querySelectorAll(ValueConstants.CLASSES.PHOTO.DOT_CLASS_NAME));
+    document.getElementById(ValueConstants.IDS.PHOTOS).removeChild(photosArray[index]);
 });

@@ -31,3 +31,9 @@ ipc.on(AppEventConstants.IMAGE_CAPTURED, (evt, contents) => {
         images.cache(imgPath);
     });
 });
+
+ipc.on(AppEventConstants.IMAGE_REMOVE, (evt, index) => {
+    images.rm(index, _ => {
+        evt.sender.send(AppEventConstants.IMAGE_REMOVED, index);
+    });
+});

@@ -24,7 +24,8 @@ const ValueConstants = {
         VIDEO: 'video',
         CANVAS: 'canvas',
         RECORD: 'record',
-        COUNTER: 'counter'
+        COUNTER: 'counter',
+        PHOTOS: 'photos'
     },
     CANVAS_CONTEXT: '2d'
 };

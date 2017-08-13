@@ -41,3 +41,14 @@ exports.cache = imgPath => {
 exports.getFromCache = index => {
     return images[index];
 };
+
+exports.rm = (index, done) => {
+    fs.unlink(images[index], err => {
+        if (err) {
+            return logError(err);
+        } else {
+            images.splice(index, 1);
+            done();
+        }
+    });
+};
