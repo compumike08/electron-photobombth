@@ -2,7 +2,7 @@ const electron = require('electron');
 
 const {app, BrowserWindow, ipcMain: ipc} = electron;
 const images = require('./images');
-const {AppEventConstants} = require('./eventConstants');
+const {AppEventConstants} = require('./appEventConstants');
 
 let mainWindow = null;
 
