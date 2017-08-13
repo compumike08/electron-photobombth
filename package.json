@@ -1,6 +1,6 @@
 {
   "name": "electron-photobombth",
-  "productName": "Electron Photobombth",
+  "productName": "Photobombth",
   "version": "1.0.0",
   "main": "src/main.js",
   "scripts": {

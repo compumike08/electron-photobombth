@@ -1,8 +1,10 @@
 const electron = require('electron');
 
-const {app, BrowserWindow, ipcMain: ipc} = electron;
 const images = require('./images');
+const menuTemplate = require('./menu');
 const {AppEventConstants} = require('./appEventConstants');
+
+const {app, BrowserWindow, ipcMain: ipc, Menu} = electron;
 
 let mainWindow = null;
 
@@ -24,6 +26,9 @@ app.on(AppEventConstants.READY, _ => {
         // Null out mainWindow variable when window is closed for proper garbage collection
         mainWindow = null;
     });
+
+    const menuContents = Menu.buildFromTemplate(menuTemplate(mainWindow));
+    Menu.setApplicationMenu(menuContents);
 });
 
 ipc.on(AppEventConstants.IMAGE_CAPTURED, (evt, contents) => {
