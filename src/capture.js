@@ -32,7 +32,7 @@ function enableRecordBtn(doc) {
 }
 
 function setRecordBtnDisabledState(doc, disable) {
-    const btn = doc.getElementById(ValueConstants.IDS.RECORD);
+    const btn = doc.getElementById(ValueConstants.IDS.RECORD.ID);
 
     if (disable) {
         btn.setAttribute('disabled', 'disabled');
@@ -42,12 +42,12 @@ function setRecordBtnDisabledState(doc, disable) {
 }
 
 window.addEventListener(AppEventConstants.DOM_CONTENT_LOADED, _ => {
-    const videoEl = document.getElementById(ValueConstants.IDS.VIDEO);
-    const canvasEl = document.getElementById(ValueConstants.IDS.CANVAS);
-    const recordEl = document.getElementById(ValueConstants.IDS.RECORD);
+    const videoEl = document.getElementById(ValueConstants.IDS.VIDEO.ID);
+    const canvasEl = document.getElementById(ValueConstants.IDS.CANVAS.ID);
+    const recordEl = document.getElementById(ValueConstants.IDS.RECORD.ID);
     const photosEl = document.querySelector(ValueConstants.CLASSES.PHOTOS_CONTAINER.DOT_CLASS_NAME);
-    const counterEl = document.getElementById(ValueConstants.IDS.COUNTER);
-    const flashEl = document.getElementById(ValueConstants.IDS.FLASH);
+    const counterEl = document.getElementById(ValueConstants.IDS.COUNTER.ID);
+    const flashEl = document.getElementById(ValueConstants.IDS.FLASH.ID);
 
     const ctx = canvasEl.getContext(ValueConstants.CANVAS_CONTEXT);
 
@@ -84,5 +84,5 @@ window.addEventListener(AppEventConstants.DOM_CONTENT_LOADED, _ => {
 
 ipc.on(AppEventConstants.IMAGE_REMOVED, (evt, index) => {
     const photosArray = Array.from(document.querySelectorAll(ValueConstants.CLASSES.PHOTO.DOT_CLASS_NAME));
-    document.getElementById(ValueConstants.IDS.PHOTOS).removeChild(photosArray[index]);
+    document.getElementById(ValueConstants.IDS.PHOTOS.ID).removeChild(photosArray[index]);
 });

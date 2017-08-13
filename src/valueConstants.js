@@ -26,12 +26,30 @@ const ValueConstants = {
         }
     },
     IDS: {
-        VIDEO: 'video',
-        CANVAS: 'canvas',
-        RECORD: 'record',
-        COUNTER: 'counter',
-        PHOTOS: 'photos',
-        FLASH: 'flash'
+        VIDEO: {
+            ID: 'video',
+            HASH_ID: '#video'
+        },
+        CANVAS: {
+            ID: 'canvas',
+            HASH_ID: '#canvas'
+        },
+        RECORD: {
+            ID: 'record',
+            HASH_ID: '#record'
+        },
+        COUNTER: {
+            ID: 'counter',
+            HASH_ID: '#counter'
+        },
+        PHOTOS: {
+            ID: 'photos',
+            HASH_ID: '#photos'
+        },
+        FLASH: {
+            ID: 'flash',
+            HASH_ID: '#flash'
+        }
     },
     CANVAS_CONTEXT: '2d',
     FLASH_DURATION: 2000
