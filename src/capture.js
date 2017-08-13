@@ -1,11 +1,13 @@
 const electron = require('electron');
 
+const {ipcRenderer: ipc, shell, remote} = electron;
+
 const {AppEventConstants} = require('./eventConstants');
 const {ValueConstants} = require('./valueConstants');
 const video = require('./video');
 const countdown = require('./countdown');
 
-const {ipcRenderer: ipc} = electron;
+const images = remote.require('./images');
 
 const COUNTDOWN_FROM = 3;
 
@@ -39,5 +41,12 @@ window.addEventListener(AppEventConstants.DOM_CONTENT_LOADED, _ => {
             ipc.send(AppEventConstants.IMAGE_CAPTURED, bytes);
             photosEl.appendChild(formatImgTag(document, bytes));
         });
+    });
+
+    photosEl.addEventListener(AppEventConstants.CLICK, evt => {
+        const photos = Array.from(document.querySelectorAll(ValueConstants.CLASSES.PHOTO_IMG.DOT_CLASS_NAME));
+        const index = photos.findIndex(el => el == evt.target);
+
+        shell.showItemInFolder(images.getFromCache(index));
     });
 });

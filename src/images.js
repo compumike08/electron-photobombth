@@ -5,9 +5,18 @@ const {ValueConstants} = require('./valueConstants');
 
 const logError = err => err && console.error(err);
 
-exports.save = (picturesPath, contents) => {
+let images = [];
+
+exports.save = (picturesPath, contents, done) => {
     const base64Data = contents.replace(/^data:image\/png;base64,/, '');
-    fs.writeFile(path.join(picturesPath, `${new Date().getTime()}.png`), base64Data, { encoding: 'base64' }, logError);
+    const imgPath = path.join(picturesPath, `${new Date().getTime()}.png`);
+    fs.writeFile(imgPath, base64Data, { encoding: 'base64' }, err => {
+        if (err) {
+            return logError(err);
+        } else {
+            done(null, imgPath);
+        }
+    });
 };
 
 exports.getPicturesDir = app => {
@@ -22,4 +31,13 @@ exports.mkdir = picturesPath => {
             fs.mkdir(picturesPath, logError);
         }
     });
+};
+
+exports.cache = imgPath => {
+    images = images.concat([imgPath]);
+    return images;
+};
+
+exports.getFromCache = index => {
+    return images[index];
 };

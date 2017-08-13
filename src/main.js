@@ -27,5 +27,7 @@ app.on(AppEventConstants.READY, _ => {
 });
 
 ipc.on(AppEventConstants.IMAGE_CAPTURED, (evt, contents) => {
-    images.save(images.getPicturesDir(app), contents);
+    images.save(images.getPicturesDir(app), contents, (err, imgPath) => {
+        images.cache(imgPath);
+    });
 });
