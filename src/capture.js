@@ -1,6 +1,10 @@
+const electron = require('electron');
+
 const {AppEventConstants} = require('./eventConstants');
 const video = require('./video');
 const countdown = require('./countdown');
+
+const {ipcRenderer: ipc} = electron;
 
 const COUNTDOWN_FROM = 3;
 
@@ -31,6 +35,7 @@ window.addEventListener(AppEventConstants.DOM_CONTENT_LOADED, _ => {
     recordEl.addEventListener(AppEventConstants.CLICK, _ => {
         countdown.start(counterEl, COUNTDOWN_FROM, _ => {
             const bytes = video.captureBytes(videoEl, ctx, canvasEl);
+            ipc.send(AppEventConstants.IMAGE_CAPTURED, bytes);
             photosEl.appendChild(formatImgTag(document, bytes));
         });
     });
