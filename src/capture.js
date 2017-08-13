@@ -4,11 +4,17 @@ const {ipcRenderer: ipc, shell, remote} = electron;
 
 const {AppEventConstants} = require('./appEventConstants');
 const {ValueConstants} = require('./valueConstants');
+const {EffectTypesConstants} = require('./effectTypesConstants');
 const video = require('./video');
 const countdown = require('./countdown');
 const flash = require('./flash');
+const effects = require('./effects');
 
 const images = remote.require('./images');
+
+let canvasTarget;
+let seriously;
+let videoSrc;
 
 function formatImgTag(doc, bytes) {
     const div = doc.createElement('div');
@@ -49,7 +55,10 @@ window.addEventListener(AppEventConstants.DOM_CONTENT_LOADED, _ => {
     const counterEl = document.getElementById(ValueConstants.IDS.COUNTER.ID);
     const flashEl = document.getElementById(ValueConstants.IDS.FLASH.ID);
 
-    const ctx = canvasEl.getContext(ValueConstants.CANVAS_CONTEXT);
+    seriously = new Seriously();
+    videoSrc = seriously.source(ValueConstants.IDS.VIDEO.HASH_ID);
+    canvasTarget = seriously.target(ValueConstants.IDS.CANVAS.HASH_ID);
+    effects.choose(seriously, videoSrc, canvasTarget, EffectTypesConstants.ASCII);
 
     video.init(navigator, videoEl);
 
@@ -58,7 +67,7 @@ window.addEventListener(AppEventConstants.DOM_CONTENT_LOADED, _ => {
 
         countdown.start(counterEl, ValueConstants.COUNTDOWN_FROM, _ => {
             flash(flashEl);
-            const bytes = video.captureBytes(videoEl, ctx, canvasEl);
+            const bytes = video.captureBytesFromLiveCanvas(canvasEl);
             ipc.send(AppEventConstants.IMAGE_CAPTURED, bytes);
             photosEl.appendChild(formatImgTag(document, bytes));
             enableRecordBtn(document);
