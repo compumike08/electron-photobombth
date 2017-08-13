@@ -14,6 +14,16 @@ const effects = {
     ascii: (seriously, src, target) => {
         const ascii = seriously.effect(EffectTypesConstants.ASCII);
         connectEffect(seriously, src, target, ascii);
+    },
+    daltonize: (seriously, src, target) => {
+        const daltonize = seriously.effect(EffectTypesConstants.DALTONIZE);
+        daltonize.type = '0.8';
+        connectEffect(seriously, src, target, daltonize);
+    },
+    hex: (seriously, src, target) => {
+        const hex = seriously.effect(EffectTypesConstants.HEX);
+        hex.size = 0.03;
+        connectEffect(seriously, src, target, hex);
     }
 };
 

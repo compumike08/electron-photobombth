@@ -59,6 +59,26 @@ module.exports = mainWindow => {
                             EffectTypesConstants.ASCII
                         );
                     }
+                },
+                {
+                    label: 'Daltonize',
+                    type: 'radio',
+                    click: _ => {
+                        mainWindow.webContents.send(
+                            AppEventConstants.EFFECT_CHOOSE,
+                            EffectTypesConstants.DALTONIZE
+                        );
+                    }
+                },
+                {
+                    label: 'Hex',
+                    type: 'radio',
+                    click: _ => {
+                        mainWindow.webContents.send(
+                            AppEventConstants.EFFECT_CHOOSE,
+                            EffectTypesConstants.HEX
+                        );
+                    }
                 }
             ]
         }

@@ -1,6 +1,8 @@
 const EffectTypesConstants = {
     VANILLA: 'vanilla',
-    ASCII: 'ascii'
+    ASCII: 'ascii',
+    DALTONIZE: 'daltonize',
+    HEX: 'hex'
 };
 
 exports.EffectTypesConstants = EffectTypesConstants;
