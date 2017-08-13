@@ -18,6 +18,10 @@ const ValueConstants = {
         PHOTOS_CONTAINER: {
             CLASS_NAME: 'photosContainer',
             DOT_CLASS_NAME: '.photosContainer'
+        },
+        IS_FLASHING: {
+            CLASS_NAME: 'is-flashing',
+            DOT_CLASS_NAME: '.is-flashing'
         }
     },
     IDS: {
@@ -25,9 +29,11 @@ const ValueConstants = {
         CANVAS: 'canvas',
         RECORD: 'record',
         COUNTER: 'counter',
-        PHOTOS: 'photos'
+        PHOTOS: 'photos',
+        FLASH: 'flash'
     },
-    CANVAS_CONTEXT: '2d'
+    CANVAS_CONTEXT: '2d',
+    FLASH_DURATION: 2000
 };
 
 exports.ValueConstants = ValueConstants;

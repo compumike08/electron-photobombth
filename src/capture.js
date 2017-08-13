@@ -6,6 +6,7 @@ const {AppEventConstants} = require('./appEventConstants');
 const {ValueConstants} = require('./valueConstants');
 const video = require('./video');
 const countdown = require('./countdown');
+const flash = require('./flash');
 
 const images = remote.require('./images');
 
@@ -48,6 +49,7 @@ window.addEventListener(AppEventConstants.DOM_CONTENT_LOADED, _ => {
     const recordEl = document.getElementById(ValueConstants.IDS.RECORD);
     const photosEl = document.querySelector(ValueConstants.CLASSES.PHOTOS_CONTAINER.DOT_CLASS_NAME);
     const counterEl = document.getElementById(ValueConstants.IDS.COUNTER);
+    const flashEl = document.getElementById(ValueConstants.IDS.FLASH);
 
     const ctx = canvasEl.getContext(ValueConstants.CANVAS_CONTEXT);
 
@@ -57,6 +59,7 @@ window.addEventListener(AppEventConstants.DOM_CONTENT_LOADED, _ => {
         disableRecordBtn(document);
 
         countdown.start(counterEl, COUNTDOWN_FROM, _ => {
+            flash(flashEl);
             const bytes = video.captureBytes(videoEl, ctx, canvasEl);
             ipc.send(AppEventConstants.IMAGE_CAPTURED, bytes);
             photosEl.appendChild(formatImgTag(document, bytes));
