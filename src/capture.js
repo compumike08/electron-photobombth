@@ -24,6 +24,24 @@ function formatImgTag(doc, bytes) {
     return div;
 }
 
+function disableRecordBtn(doc) {
+    setRecordBtnDisabledState(doc, true);
+}
+
+function enableRecordBtn(doc) {
+    setRecordBtnDisabledState(doc, false);
+}
+
+function setRecordBtnDisabledState(doc, disable) {
+    const btn = doc.getElementById(ValueConstants.IDS.RECORD);
+
+    if (disable) {
+        btn.setAttribute('disabled', 'disabled');
+    } else {
+        btn.removeAttribute('disabled');
+    }
+}
+
 window.addEventListener(AppEventConstants.DOM_CONTENT_LOADED, _ => {
     const videoEl = document.getElementById(ValueConstants.IDS.VIDEO);
     const canvasEl = document.getElementById(ValueConstants.IDS.CANVAS);
@@ -36,10 +54,13 @@ window.addEventListener(AppEventConstants.DOM_CONTENT_LOADED, _ => {
     video.init(navigator, videoEl);
 
     recordEl.addEventListener(AppEventConstants.CLICK, _ => {
+        disableRecordBtn(document);
+
         countdown.start(counterEl, COUNTDOWN_FROM, _ => {
             const bytes = video.captureBytes(videoEl, ctx, canvasEl);
             ipc.send(AppEventConstants.IMAGE_CAPTURED, bytes);
             photosEl.appendChild(formatImgTag(document, bytes));
+            enableRecordBtn(document);
         });
     });
 
